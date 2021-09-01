@@ -1,0 +1,12 @@
+syntax = "proto3";
+package baeldung;
+option java_package = "com.mbenz.file.storageservice.dto";
+option java_outer_classname = "UserProto";
+
+message User {
+  string name = 1;
+  string email = 2;
+  int32 age = 3;
+  int64 salary = 4;
+  string dob = 5;
+}
