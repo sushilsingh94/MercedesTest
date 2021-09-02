@@ -25,4 +25,8 @@
 * run  docker images to see latest image file created
 * run below command to start application in docker
 * >docker run -p 8080:8080 sushil/file-storage-server
+
+* Or If dont want to run in docker then directly run in Machine using command below
+* >nohup java -jar /build/libs/StorageService-0.0.1-SNAPSHOT.jar > /User/Documents/logs/applog.log 2>&1 &
+* Access application using http://localhost:8090/storage-service/v1/users
 * Access application using http://localhost:8080/file-service/v1/users

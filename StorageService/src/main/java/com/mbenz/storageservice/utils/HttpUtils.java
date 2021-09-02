@@ -13,7 +13,6 @@ public class HttpUtils {
             HttpRequest request = requestBuilder.build();
             return HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
         }catch (Exception e){
-            e.printStackTrace();
             throw new Exception(e.getMessage(), e);
         }
     }

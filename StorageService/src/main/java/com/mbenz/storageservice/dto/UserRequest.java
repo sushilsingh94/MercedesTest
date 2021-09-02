@@ -1,6 +1,8 @@
 package com.mbenz.storageservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -13,7 +15,8 @@ import java.util.Objects;
 /**
  * @author Sushil.Kumar
  */
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRequest implements Serializable {
 
     @NotBlank(message = "Name must not be empty")

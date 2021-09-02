@@ -1,5 +1,6 @@
 package com.mbenz.storageservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mbenz.storageservice.dto.FileType;
 import com.mbenz.storageservice.dto.HttpUserResponse;
 import com.mbenz.storageservice.dto.UserRequest;
@@ -34,13 +35,13 @@ public class UserStorageController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveUserDetails(@Valid @RequestBody UserRequest userRequest, @RequestHeader FileType fileType){
+    public ResponseEntity<?> saveUserDetails(@Valid @RequestBody UserRequest userRequest, @RequestHeader FileType fileType) throws JsonProcessingException {
         UserResponse userResponse = userService.saveUserDetails(userRequest, fileType);
         return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUserDetails(@Valid @RequestBody UserRequest userRequest, @PathVariable Integer id, @RequestHeader FileType fileType){
+    public ResponseEntity<?> updateUserDetails(@Valid @RequestBody UserRequest userRequest, @PathVariable Integer id, @RequestHeader FileType fileType) throws JsonProcessingException {
         UserResponse userResponse = userService.updateUserDetails(id, userRequest, fileType);
         return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }

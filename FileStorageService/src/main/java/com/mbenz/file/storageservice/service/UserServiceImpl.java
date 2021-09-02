@@ -32,13 +32,10 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private FileWriterFactory fileWriterFactory;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Override
     public String getUserDetails(Integer id, String name, String email) throws JsonProcessingException {
         Users user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-        String response = AESUtil.encrypt(objectMapper.writeValueAsString(user.toUserResponse()));
+        String response = AESUtil.encrypt(new ObjectMapper().writeValueAsString(user.toUserResponse()));
         return response;
     }
 
@@ -48,7 +45,7 @@ public class UserServiceImpl implements UserService{
         Optional<String> filePath = fileWriterFactory.getInstance(fileType).writeToFile(user, fileStoragePath);
         user.setFilePath(filePath.orElse(""));
         userRepository.save(user);
-        log.info("User details saved to DB and written to file at {}", filePath.get());
+        log.info("User details saved to DB and written to file at {}", user.getFilePath());
         return user.toUserResponse();
     }
 
@@ -64,7 +61,7 @@ public class UserServiceImpl implements UserService{
         Optional<String> filePath = fileWriterFactory.getInstance(fileType).writeToFile(user, fileStoragePath);
         user.setFilePath(filePath.orElse(""));
         userRepository.save(user);
-        log.info("User details updated to DB and written to file at {}", filePath.get());
+        log.info("User details updated to DB and written to file at {}", user.getFilePath());
         return user.toUserResponse();
     }
 }
